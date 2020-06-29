@@ -19,6 +19,7 @@ class CustomerRelatedController extends Controller
     public function index($customer_id)
     {
         $user = Auth::user();
+        
         $product = $user->businesses()->where('customer_id', $customer_id)->latest()->first()->products[0]??'';
         return [
             'products' => $product? new Product($product):[], //相关产品
