@@ -13,7 +13,7 @@ class Product extends Model
     ];
 
     public function getCoverAttribute() {
-        return !empty($this->pictures[0]) ? asset('Storage/'.$this->pictures[0]) : '';
+        return !empty($this->pictures[0]) ? asset('storage/'.$this->pictures[0]) : '';
     }
 
     public function businesses() {
@@ -28,7 +28,7 @@ class Product extends Model
 
     public function getPicturelistAttribute() {
         return array_map(function($item) {
-            return asset('Storage/'.$item);
+            return asset('storage/'.$item);
         }, $this->pictures);
     }
 }
