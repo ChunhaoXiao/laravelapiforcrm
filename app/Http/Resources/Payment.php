@@ -16,8 +16,8 @@ class Payment extends JsonResource
     {
         $datas =  parent::toArray($request);
         $datas['created_time'] = !empty($this->created_at) ? Date::parse($this->created_at)->diffForHumans():'';
-        $datas['paymethod'] = $this->paymethod->name;
-        $datas['customer'] = $this->customer->name;
+        $datas['paymethod'] = $this->paymethod->name??'';
+        $datas['customer'] = $this->customer->name??'';
         return $datas;
     }
 }
