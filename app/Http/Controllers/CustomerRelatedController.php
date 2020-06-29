@@ -21,11 +21,13 @@ class CustomerRelatedController extends Controller
         $user = Auth::user();
         
         $product = $user->businesses()->where('customer_id', $customer_id)->latest()->first()->products[0]??'';
+        $business = $user->businesses()->with('customer')->latest()->first();
+        $payment = $user->payments()->latest()->first();
         return [
             'products' => $product? new Product($product):[], //相关产品
-            'business' => new Business($user->businesses()->with('customer')->latest()->first()), //相关商机
+            'business' => $business ? new Business($business):[], //相关商机
            // 'thread' => $user->threads()->latest()->first(),
-            'payment' => new Payment($user->payments()->latest()->first()), //相关回款
+            'payment' => $payment ? new Payment($payment):[], //相关回款
             'contract' => $user->contracts()->where('customer_id', $customer_id)->latest()->first(),
         ];
         
