@@ -18,7 +18,7 @@ class Business extends JsonResource
         $data['create_time'] = !empty($this->created_at) ? Date::parse($this->created_at)->diffForHumans():'';
         $data['customer'] = $this->customer->name??'';
         $data['level'] = $this->level->name??'';
-        $data['product'] = Product::collection($this->products);
+        $data['product'] = Product::collection($this->products??[]);
         return $data;
     }
 }
