@@ -7,7 +7,7 @@
             <div class="col-sm-10">
                 <select name="data_model"  class="form-control">
                     <!-- <option value="">请选择</option> -->
-                    @foreach(App\Models\Datasource::TYPES as $k => $v)
+                    @foreach(App\Models\DataSource::TYPES as $k => $v)
                         <option value="{{$k}}" @if($k == request()->type) selected @endif>{{$v}}</option>
                     @endforeach
                 </select>
