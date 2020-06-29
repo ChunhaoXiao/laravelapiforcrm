@@ -24,10 +24,10 @@ class CustomerRelatedController extends Controller
         $business = $user->businesses()->with('customer')->latest()->first();
         $payment = $user->payments()->latest()->first();
         return [
-            'products' => $product? new Product($product):[], //相关产品
-            'business' => $business ? new Business($business):[], //相关商机
+            'products' => $product? new Product($product):'', //相关产品
+            'business' => $business ? new Business($business):'', //相关商机
            // 'thread' => $user->threads()->latest()->first(),
-            'payment' => $payment ? new Payment($payment):[], //相关回款
+            'payment' => $payment ? new Payment($payment):'', //相关回款
             'contract' => $user->contracts()->where('customer_id', $customer_id)->latest()->first(),
         ];
         
